@@ -3,13 +3,15 @@ package com.example.gestion_tienda.controller;
 import com.example.gestion_tienda.dto.request.ProductoRequestDTO;
 import com.example.gestion_tienda.dto.response.ProductoResponseDTO;
 import com.example.gestion_tienda.service.impl.ProductoServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Tag(name ="Producto", description = "Procesa todo lo relacionado con producto")
 @RestController
 @RequestMapping("/api/producto")
 @RequiredArgsConstructor
@@ -26,7 +28,7 @@ public class ProductoController {
     public ResponseEntity<ProductoResponseDTO> actualizar(@RequestBody ProductoRequestDTO dto, @PathVariable Long id){
         return ResponseEntity.ok().body(productoService.actualizarProducto(dto, id));
     }
-
+    @Operation
     @GetMapping
     public ResponseEntity<List<ProductoResponseDTO>> listarTodos(){
         return ResponseEntity.ok().body(productoService.buscarTodos());

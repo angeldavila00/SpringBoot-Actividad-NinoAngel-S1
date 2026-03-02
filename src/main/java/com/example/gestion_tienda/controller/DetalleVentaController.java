@@ -3,6 +3,7 @@ package com.example.gestion_tienda.controller;
 import com.example.gestion_tienda.dto.request.DetalleVentaRequestDTO;
 import com.example.gestion_tienda.dto.response.DetalleVentaResponseDTO;
 import com.example.gestion_tienda.service.impl.DetalleVentaServiceImpl;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name ="Detalle Venta", description = "Procesa todo lo relacionado con detalle de venta")
 @RestController
 @RequestMapping("/api/detalleventa")
 @RequiredArgsConstructor
