@@ -37,7 +37,7 @@ public class VentaController {
     public ResponseEntity<List<VentaResponseDTO>> listarTodos(){
         return ResponseEntity.ok().body(ventaService.buscarVentas());
     }
-
+    @Operation(summary = "Buscar por ID")
     @GetMapping("/{id}")
     public ResponseEntity<VentaResponseDTO> buscarId(@Parameter(description = "Id de la venta a buscar", example = "1") @PathVariable Long id){
         return ResponseEntity.ok().body(ventaService.buscarPorId(id));
