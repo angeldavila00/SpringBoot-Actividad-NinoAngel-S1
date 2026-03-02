@@ -31,7 +31,7 @@ public class DetalleVentaController {
     public ResponseEntity<DetalleVentaResponseDTO> actualizar(@RequestBody DetalleVentaRequestDTO dto, @PathVariable Long id){
         return ResponseEntity.ok().body(detalleVentaService.actualizarDetalleVenta(dto, id));
     }
-
+    @Operation(summary = "Lista los detalles de venta")
     @GetMapping
     public ResponseEntity<List<DetalleVentaResponseDTO>> listarTodos(){
         return ResponseEntity.ok().body(detalleVentaService.listarDetalles());
@@ -42,7 +42,7 @@ public class DetalleVentaController {
     public ResponseEntity<DetalleVentaResponseDTO> buscarId(@PathVariable Long id){
         return ResponseEntity.ok().body(detalleVentaService.buscarPorId(id));
     }
-
+    @Operation(summary = "Elimina los detalles de venta")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id){
         detalleVentaService.eliminarDetalleVenta(id);

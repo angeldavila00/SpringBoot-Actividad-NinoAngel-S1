@@ -5,6 +5,8 @@ import com.example.gestion_tienda.dto.response.VentaResponseDTO;
 import com.example.gestion_tienda.service.impl.VentaServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,13 @@ public class VentaController {
     @Operation(summary = "Guarda las ventas",
             description = "Permite guardar la venta ")
     @PostMapping
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201",
+            description = "Venta creada con exito"),
+            @ApiResponse(responseCode = "400",
+                    description = "Datos no validos / body mal estructurado"
+            )
+    })
     public ResponseEntity<VentaResponseDTO> guardar(@RequestBody VentaRequestDTO dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(ventaService.guardarVenta(dto));
     }
