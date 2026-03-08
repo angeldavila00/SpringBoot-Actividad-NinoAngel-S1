@@ -5,9 +5,11 @@ import com.example.gestion_tienda.dto.response.ProductoResponseDTO;
 import com.example.gestion_tienda.service.impl.ProductoServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,19 +17,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/producto")
 @RequiredArgsConstructor
+@Validated
 public class ProductoController {
 
     private final ProductoServiceImpl productoService;
 @Operation(summary = "Guarda los productos",
         description = "Permite guardar los productos ")
     @PostMapping
-    public ResponseEntity<ProductoResponseDTO> guardar(@RequestBody ProductoRequestDTO dto){
+    public ResponseEntity<ProductoResponseDTO> guardar(@Valid @RequestBody ProductoRequestDTO dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(productoService.guardarProducto(dto));
     }
 @Operation(summary = "Actualizar producto",
         description = "Permite actalizar los productos ")
     @PutMapping("/{id}")
-    public ResponseEntity<ProductoResponseDTO> actualizar(@RequestBody ProductoRequestDTO dto, @PathVariable Long id){
+    public ResponseEntity<ProductoResponseDTO> actualizar(@Valid @RequestBody ProductoRequestDTO dto, @PathVariable Long id){
         return ResponseEntity.ok().body(productoService.actualizarProducto(dto, id));
     }
     @Operation(summary = "Lista productos",

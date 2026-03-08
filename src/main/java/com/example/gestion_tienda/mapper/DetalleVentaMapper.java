@@ -14,13 +14,7 @@ public class DetalleVentaMapper {
 
     public DetalleVentaResponseDTO entidadADTO(DetalleVenta detalleVenta, ProductoResponseDTO dtoP, VentaResponseDTO dtoV) {
         if (detalleVenta == null || dtoP == null || dtoV == null) return null;
-        return new DetalleVentaResponseDTO(
-                detalleVenta.getId(),
-                detalleVenta.getCantidad(),
-                detalleVenta.getSubtotal(),
-                dtoV,
-                dtoP
-        );
+        return new DetalleVentaResponseDTO(detalleVenta.getId(), detalleVenta.getCantidad(), detalleVenta.getSubtotal(), dtoV, dtoP);
     }
 
     public DetalleVenta DTOAentidad(DetalleVentaRequestDTO dto, Venta venta, Producto producto) {
